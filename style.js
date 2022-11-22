@@ -16,7 +16,7 @@ export default StyleSheet.create({
   background: {
     backgroundColor: "white",
   },
-  logo: {
+  logoPageSignIn: {
     backgroundColor: "white",
     height: 350,
     justifyContent: "center",
@@ -65,5 +65,24 @@ export default StyleSheet.create({
   errorMessage: {
     color: "#EB5A62",
     textAlign: "center",
+  },
+
+  logoPageSignUp: {
+    backgroundColor: "white",
+    height: 200,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  passwordInputBloc: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderBottomColor: "pink",
+    borderBottomWidth: 1,
+  },
+  passwordInput: {
+    backgroundColor: "white",
+    padding: 15,
   },
 });

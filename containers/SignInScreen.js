@@ -3,7 +3,6 @@ import { useState } from "react";
 
 import { useNavigation } from "@react-navigation/core";
 import {
-  Button,
   Text,
   TextInput,
   View,
@@ -13,12 +12,14 @@ import {
 } from "react-native";
 import style from "../style";
 import logo from "../assets/logo.png";
+import { AntDesign } from "@expo/vector-icons";
 
 export default function SignInScreen({ setToken }) {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [secureTextEntry, setsecureTextEntry] = useState(true);
 
   const handlePress = async () => {
     if (email === "" || password === "") {
@@ -44,7 +45,7 @@ export default function SignInScreen({ setToken }) {
 
   return (
     <ScrollView style={style.background}>
-      <View style={style.logo}>
+      <View style={style.logoPageSignIn}>
         <Image style={style.logoSignIn} source={logo} resizeMode="contain" />
         <Text style={style.h1SignIn}>Sign in</Text>
       </View>
@@ -57,15 +58,25 @@ export default function SignInScreen({ setToken }) {
             setEmail(text);
           }}
         />
-        <TextInput
-          style={style.input}
-          value={password}
-          placeholder="Password"
-          secureTextEntry={true}
-          onChangeText={(text) => {
-            setPassword(text);
-          }}
-        />
+        <View style={style.passwordInputBloc}>
+          <TextInput
+            style={style.passwordInput}
+            value={password}
+            placeholder="Password"
+            secureTextEntry={secureTextEntry}
+            onChangeText={(text) => {
+              setPassword(text);
+            }}
+          />
+          <AntDesign
+            onPress={() => {
+              setsecureTextEntry(!secureTextEntry);
+            }}
+            name="eye"
+            size={24}
+            color="black"
+          />
+        </View>
       </View>
       <View style={style.buttonBloc}>
         <Text style={style.errorMessage}>{error}</Text>
