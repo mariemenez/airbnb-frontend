@@ -4,12 +4,16 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+
 import HomeScreen from "./containers/HomeScreen";
 import ProfileScreen from "./containers/ProfileScreen";
 import SignInScreen from "./containers/SignInScreen";
 import SignUpScreen from "./containers/SignUpScreen";
 import SettingsScreen from "./containers/SettingsScreen";
 import SplashScreen from "./containers/SplashScreen";
+import RoomScreen from "./containers/RoomScreen";
 
 import styles from "./style";
 
@@ -96,6 +100,16 @@ export default function App() {
                       >
                         {() => <HomeScreen />}
                       </Stack.Screen>
+                      <Stack.Screen
+                        name="Room"
+                        options={{
+                          title: "Room screen",
+                          headerStyle: { backgroundColor: "red" },
+                          headerTitleStyle: { color: "white" },
+                        }}
+                      >
+                        {() => <RoomScreen />}
+                      </Stack.Screen>
 
                       <Stack.Screen
                         name="Profile"
@@ -104,6 +118,28 @@ export default function App() {
                         }}
                       >
                         {() => <ProfileScreen />}
+                      </Stack.Screen>
+                    </Stack.Navigator>
+                  )}
+                </Tab.Screen>
+                <Tab.Screen
+                  name="AroundMe"
+                  options={{
+                    tabBarLabel: "Around me",
+                    tabBarIcon: ({ color, size }) => (
+                      <MaterialIcons name="place" size={size} color={color} />
+                    ),
+                  }}
+                >
+                  {() => (
+                    <Stack.Navigator>
+                      <Stack.Screen
+                        name="Settings"
+                        options={{
+                          title: "Settings",
+                        }}
+                      >
+                        {() => <SettingsScreen setToken={setToken} />}
                       </Stack.Screen>
                     </Stack.Navigator>
                   )}
@@ -118,6 +154,28 @@ export default function App() {
                         size={size}
                         color={color}
                       />
+                    ),
+                  }}
+                >
+                  {() => (
+                    <Stack.Navigator>
+                      <Stack.Screen
+                        name="Settings"
+                        options={{
+                          title: "Settings",
+                        }}
+                      >
+                        {() => <SettingsScreen setToken={setToken} />}
+                      </Stack.Screen>
+                    </Stack.Navigator>
+                  )}
+                </Tab.Screen>
+                <Tab.Screen
+                  name="My profile"
+                  options={{
+                    tabBarLabel: "My profile",
+                    tabBarIcon: ({ color, size }) => (
+                      <AntDesign name="user" size={size} color={color} />
                     ),
                   }}
                 >
