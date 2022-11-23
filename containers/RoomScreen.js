@@ -1,12 +1,19 @@
-import { Button, Text, View, Image, ImageBackground } from "react-native";
+import {
+  Button,
+  Text,
+  View,
+  Image,
+  ImageBackground,
+  ActivityIndicator,
+} from "react-native";
 import { useRoute } from "@react-navigation/core";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import style from "../style";
+import { Entypo } from "@expo/vector-icons";
 
 export default function RoomScreen() {
   const [isLoading, setIsLoading] = useState(true);
-
   const { params } = useRoute();
   const [data, setData] = useState();
   const id = params.roomId;
@@ -27,9 +34,11 @@ export default function RoomScreen() {
     fetchData();
   }, [id]);
 
+  //   const ratingTab = [];
+
   return isLoading ? (
-    <View>
-      <Text>en cours de chargement</Text>
+    <View style={style.activityIndicator}>
+      <ActivityIndicator size="large" color="#EB5A62" />
     </View>
   ) : (
     <View style={style.background}>
@@ -50,8 +59,48 @@ export default function RoomScreen() {
             {data.title}
           </Text>
           <View style={style.rating}>
-            <Text>stars</Text>
-            <Text> 68reviews</Text>
+            {data.ratingValue === 1 ? (
+              <View>
+                <Entypo name="star" size={28} color="#FFB100" />
+                <Entypo name="star" size={28} color="#BCBCBC" />
+                <Entypo name="star" size={28} color="#BCBCBC" />
+                <Entypo name="star" size={28} color="#BCBCBC" />
+                <Entypo name="star" size={28} color="#BCBCBC" />
+              </View>
+            ) : data.ratingValue === 2 ? (
+              <View style={style.starsView}>
+                <Entypo name="star" size={28} color="#FFB100" />
+                <Entypo name="star" size={28} color="#FFB100" />
+                <Entypo name="star" size={28} color="#BCBCBC" />
+                <Entypo name="star" size={28} color="#BCBCBC" />
+                <Entypo name="star" size={28} color="#BCBCBC" />
+              </View>
+            ) : data.ratingValue === 3 ? (
+              <View style={style.starsView}>
+                <Entypo name="star" size={28} color="#FFB100" />
+                <Entypo name="star" size={28} color="#FFB100" />
+                <Entypo name="star" size={28} color="#FFB100" />
+                <Entypo name="star" size={28} color="#BCBCBC" />
+                <Entypo name="star" size={28} color="#BCBCBC" />
+              </View>
+            ) : data.ratingValue === 4 ? (
+              <View style={style.starsView}>
+                <Entypo name="star" size={28} color="#FFB100" />
+                <Entypo name="star" size={28} color="#FFB100" />
+                <Entypo name="star" size={28} color="#FFB100" />
+                <Entypo name="star" size={28} color="#FFB100" />
+                <Entypo name="star" size={28} color="#BCBCBC" />
+              </View>
+            ) : data.ratingValue === 5 ? (
+              <View style={style.starsView}>
+                <Entypo name="star" size={28} color="#FFB100" />
+                <Entypo name="star" size={28} color="#FFB100" />
+                <Entypo name="star" size={28} color="#FFB100" />
+                <Entypo name="star" size={28} color="#FFB100" />
+                <Entypo name="star" size={28} color="#FFB100" />
+              </View>
+            ) : null}
+            <Text style={style.reviewsText}>{data.reviews} reviews</Text>
           </View>
         </View>
         <Image

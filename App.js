@@ -16,6 +16,8 @@ import SplashScreen from "./containers/SplashScreen";
 import RoomScreen from "./containers/RoomScreen";
 
 import styles from "./style";
+import { Image } from "react-native";
+import logo from "./assets/logo.png";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -32,6 +34,16 @@ export default function App() {
     }
 
     setUserToken(token);
+  };
+
+  const LogoTitle = () => {
+    return (
+      <Image
+        style={{ width: 30, height: 30 }}
+        source={logo}
+        resizeMode="contain"
+      />
+    );
   };
 
   useEffect(() => {
@@ -93,9 +105,8 @@ export default function App() {
                       <Stack.Screen
                         name="Home"
                         options={{
-                          title: "My App",
-                          headerStyle: { backgroundColor: "red" },
-                          headerTitleStyle: { color: "white" },
+                          title: "Home",
+                          headerTitle: (props) => <LogoTitle {...props} />,
                         }}
                       >
                         {() => <HomeScreen />}
@@ -104,8 +115,7 @@ export default function App() {
                         name="Room"
                         options={{
                           title: "Room screen",
-                          headerStyle: { backgroundColor: "red" },
-                          headerTitleStyle: { color: "white" },
+                          headerTitle: (props) => <LogoTitle {...props} />,
                         }}
                       >
                         {() => <RoomScreen />}

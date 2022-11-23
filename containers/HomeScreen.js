@@ -7,14 +7,18 @@ import {
   ScrollView,
   ImageBackground,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FlatList } from "react-native";
 import style from "../style";
 import logo from "../assets/logo.png";
+import { Entypo } from "@expo/vector-icons";
 
 export default function HomeScreen() {
+  const [isLoading, setIsLoading] = useState(true);
+
   const navigation = useNavigation();
 
   const [data, setData] = useState();
@@ -26,6 +30,8 @@ export default function HomeScreen() {
           "https://express-airbnb-api.herokuapp.com/rooms"
         );
         setData(response.data);
+        setIsLoading(false);
+
         // console.log(response.data);
       } catch (error) {
         console.log(error.message);
@@ -33,7 +39,11 @@ export default function HomeScreen() {
     };
     fetchData();
   }, []);
-  return (
+  return isLoading ? (
+    <View style={style.activityIndicator}>
+      <ActivityIndicator size="large" color="#EB5A62" />
+    </View>
+  ) : (
     <View style={[style.background, style.roomDetailsPadding]}>
       {/* <Text>Welcome home!</Text>
       <Button
@@ -73,15 +83,57 @@ export default function HomeScreen() {
                     {item.title}
                   </Text>
                   <View style={style.rating}>
-                    <Text>stars</Text>
-                    <Text>{item.reviews} reviews</Text>
+                    {item.ratingValue === 1 ? (
+                      <View>
+                        <Entypo name="star" size={28} color="#FFB100" />
+                        <Entypo name="star" size={28} color="#BCBCBC" />
+                        <Entypo name="star" size={28} color="#BCBCBC" />
+                        <Entypo name="star" size={28} color="#BCBCBC" />
+                        <Entypo name="star" size={28} color="#BCBCBC" />
+                      </View>
+                    ) : item.ratingValue === 2 ? (
+                      <View style={style.starsView}>
+                        <Entypo name="star" size={28} color="#FFB100" />
+                        <Entypo name="star" size={28} color="#FFB100" />
+                        <Entypo name="star" size={28} color="#BCBCBC" />
+                        <Entypo name="star" size={28} color="#BCBCBC" />
+                        <Entypo name="star" size={28} color="#BCBCBC" />
+                      </View>
+                    ) : item.ratingValue === 3 ? (
+                      <View style={style.starsView}>
+                        <Entypo name="star" size={28} color="#FFB100" />
+                        <Entypo name="star" size={28} color="#FFB100" />
+                        <Entypo name="star" size={28} color="#FFB100" />
+                        <Entypo name="star" size={28} color="#BCBCBC" />
+                        <Entypo name="star" size={28} color="#BCBCBC" />
+                      </View>
+                    ) : item.ratingValue === 4 ? (
+                      <View style={style.starsView}>
+                        <Entypo name="star" size={28} color="#FFB100" />
+                        <Entypo name="star" size={28} color="#FFB100" />
+                        <Entypo name="star" size={28} color="#FFB100" />
+                        <Entypo name="star" size={28} color="#FFB100" />
+                        <Entypo name="star" size={28} color="#BCBCBC" />
+                      </View>
+                    ) : item.ratingValue === 5 ? (
+                      <View style={style.starsView}>
+                        <Entypo name="star" size={28} color="#FFB100" />
+                        <Entypo name="star" size={28} color="#FFB100" />
+                        <Entypo name="star" size={28} color="#FFB100" />
+                        <Entypo name="star" size={28} color="#FFB100" />
+                        <Entypo name="star" size={28} color="#FFB100" />
+                      </View>
+                    ) : null}
+                    <Text style={style.reviewsText}>
+                      {item.reviews} reviews
+                    </Text>
                   </View>
                 </View>
 
                 <Image
                   source={{ uri: item.user.account.photo.url }}
                   style={style.avatar}
-                  resizeMode="contain"
+                  resizeMode="cover"
                 />
               </View>
             </View>

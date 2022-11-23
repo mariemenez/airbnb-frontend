@@ -124,10 +124,12 @@ export default StyleSheet.create({
     flex: 3,
   },
   roomTitle: {
-    fontSize: 25,
+    fontSize: 20,
   },
   rating: {
     flexDirection: "row",
+    alignItems: "center",
+    marginTop: 20,
   },
   avatar: {
     // backgroundColor: "yellow",
@@ -165,5 +167,18 @@ export default StyleSheet.create({
   roomDetailsPadding: {
     paddingRight: 15,
     paddingLeft: 15,
+  },
+
+  activityIndicator: {
+    justifyContent: "center",
+    flex: 1,
+  },
+  starsView: {
+    flexDirection: "row",
+    paddingRight: 10,
+  },
+  reviewsText: {
+    color: "grey",
+    fontSize: 17,
   },
 });
