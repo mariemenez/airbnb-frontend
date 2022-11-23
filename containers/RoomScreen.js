@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import style from "../style";
 import { Entypo } from "@expo/vector-icons";
+import { SwiperFlatList } from "react-native-swiper-flatlist";
 
 export default function RoomScreen() {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,6 +36,7 @@ export default function RoomScreen() {
   }, [id]);
 
   //   const ratingTab = [];
+  // console.log(data.photos[2].url);
 
   return isLoading ? (
     <View style={style.activityIndicator}>
@@ -43,15 +45,23 @@ export default function RoomScreen() {
   ) : (
     <View style={style.background}>
       <View>
-        <ImageBackground
-          source={{
-            uri: data.photos[0].url,
-          }}
-          style={style.roomPictures}
-          resizeMode="cover"
-        >
-          <Text style={style.roomCardPrice}>{data.price} €</Text>
-        </ImageBackground>
+        <SwiperFlatList
+          showPagination
+          data={data.photos}
+          renderItem={({ item }) => (
+            <View style={style.carousel}>
+              <ImageBackground
+                source={{
+                  uri: item.url,
+                }}
+                style={style.test}
+                resizeMode="cover"
+              >
+                <Text style={style.roomCardPrice}>{data.price} €</Text>
+              </ImageBackground>
+            </View>
+          )}
+        />
       </View>
       <View style={[style.roomCardBottom, style.roomDetailsPadding]}>
         <View style={style.roomInfos}>

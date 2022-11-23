@@ -141,7 +141,7 @@ export default StyleSheet.create({
 
   // ROOM
   map: {
-    height: 250,
+    height: 300,
     // backgroundColor: "orange",
     justifyContent: "center",
     alignItems: "center",
@@ -180,5 +180,21 @@ export default StyleSheet.create({
   reviewsText: {
     color: "grey",
     fontSize: 17,
+  },
+
+  // TEST DE CAROUSEL
+  child: {
+    width: "100%",
+    height: 200,
+  },
+  text: {
+    fontSize: 20,
+    textAlign: "center",
+    justifyContent: "flex-end",
+  },
+
+  test: {
+    height: 300,
+    width: 450,
   },
 });
