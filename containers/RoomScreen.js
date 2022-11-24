@@ -49,12 +49,12 @@ export default function RoomScreen() {
           showPagination
           data={data.photos}
           renderItem={({ item }) => (
-            <View style={style.carousel}>
+            <View>
               <ImageBackground
                 source={{
                   uri: item.url,
                 }}
-                style={style.test}
+                style={style.imageCarouselCard}
                 resizeMode="cover"
               >
                 <Text style={style.roomCardPrice}>{data.price} €</Text>

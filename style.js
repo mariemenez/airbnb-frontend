@@ -5,16 +5,15 @@ export default StyleSheet.create({
     // flex: 1,
     marginTop: 20,
   },
+  background: {
+    backgroundColor: "white",
+  },
   welcome: {
     textAlign: "center",
   },
   logoSignIn: {
     height: 100,
     width: 100,
-  },
-
-  background: {
-    backgroundColor: "white",
   },
   logoPageSignIn: {
     backgroundColor: "white",
@@ -62,11 +61,6 @@ export default StyleSheet.create({
     fontWeight: "bold",
   },
 
-  errorMessage: {
-    color: "#EB5A62",
-    textAlign: "center",
-  },
-
   logoPageSignUp: {
     backgroundColor: "white",
     height: 200,
@@ -86,7 +80,12 @@ export default StyleSheet.create({
     padding: 15,
   },
 
-  // HOME PAGE AVEC LES ANNONCES
+  errorMessage: {
+    color: "#EB5A62",
+    textAlign: "center",
+  },
+
+  // HOME
 
   roomCard: {
     borderBottomColor: "lightgrey",
@@ -138,41 +137,6 @@ export default StyleSheet.create({
     width: 90,
     borderRadius: 50,
   },
-
-  // ROOM
-  map: {
-    height: 300,
-    // backgroundColor: "orange",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  container: {
-    padding: 5,
-  },
-
-  roomPictures: {
-    height: 300,
-    width: "100%",
-    justifyContent: "flex-end",
-  },
-  roomDescription: {
-    fontSize: 15,
-    lineHeight: 25,
-    marginBottom: 15,
-    paddingLeft: 15,
-    paddingRight: 15,
-  },
-
-  roomDetailsPadding: {
-    paddingRight: 15,
-    paddingLeft: 15,
-  },
-
-  activityIndicator: {
-    justifyContent: "center",
-    flex: 1,
-  },
   starsView: {
     flexDirection: "row",
     paddingRight: 10,
@@ -182,19 +146,35 @@ export default StyleSheet.create({
     fontSize: 17,
   },
 
-  // TEST DE CAROUSEL
-  child: {
-    width: "100%",
-    height: 200,
-  },
-  text: {
-    fontSize: 20,
-    textAlign: "center",
-    justifyContent: "flex-end",
-  },
+  // ROOM
 
-  test: {
+  imageCarouselCard: {
     height: 300,
     width: 450,
+    justifyContent: "flex-end",
+  },
+  roomDescription: {
+    fontSize: 15,
+    lineHeight: 25,
+    marginBottom: 15,
+    paddingLeft: 15,
+    paddingRight: 15,
+  },
+  roomDetailsPadding: {
+    paddingRight: 15,
+    paddingLeft: 15,
+  },
+
+  map: {
+    height: 300,
+    // backgroundColor: "orange",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  // ACTIVITY INDICATOR
+  activityIndicator: {
+    justifyContent: "center",
+    flex: 1,
   },
 });
