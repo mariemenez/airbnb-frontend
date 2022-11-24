@@ -18,9 +18,7 @@ import { Entypo } from "@expo/vector-icons";
 
 export default function HomeScreen() {
   const [isLoading, setIsLoading] = useState(true);
-
   const navigation = useNavigation();
-
   const [data, setData] = useState();
 
   useEffect(() => {
@@ -39,6 +37,22 @@ export default function HomeScreen() {
     };
     fetchData();
   }, []);
+
+  const generateStars = (ratingValue) => {
+    const starsArray = [];
+    for (let i = 0; i < 5; i++) {
+      if (i < ratingValue) {
+        starsArray.push(
+          <Entypo name="star" size={24} color="#DAA520" key={i} />
+        );
+      } else {
+        starsArray.push(<Entypo name="star" size={24} color="grey" key={i} />);
+      }
+    }
+
+    return starsArray;
+  };
+
   return isLoading ? (
     <View style={style.activityIndicator}>
       <ActivityIndicator size="large" color="#EB5A62" />
@@ -83,47 +97,7 @@ export default function HomeScreen() {
                     {item.title}
                   </Text>
                   <View style={style.rating}>
-                    {item.ratingValue === 1 ? (
-                      <View>
-                        <Entypo name="star" size={28} color="#FFB100" />
-                        <Entypo name="star" size={28} color="#BCBCBC" />
-                        <Entypo name="star" size={28} color="#BCBCBC" />
-                        <Entypo name="star" size={28} color="#BCBCBC" />
-                        <Entypo name="star" size={28} color="#BCBCBC" />
-                      </View>
-                    ) : item.ratingValue === 2 ? (
-                      <View style={style.starsView}>
-                        <Entypo name="star" size={28} color="#FFB100" />
-                        <Entypo name="star" size={28} color="#FFB100" />
-                        <Entypo name="star" size={28} color="#BCBCBC" />
-                        <Entypo name="star" size={28} color="#BCBCBC" />
-                        <Entypo name="star" size={28} color="#BCBCBC" />
-                      </View>
-                    ) : item.ratingValue === 3 ? (
-                      <View style={style.starsView}>
-                        <Entypo name="star" size={28} color="#FFB100" />
-                        <Entypo name="star" size={28} color="#FFB100" />
-                        <Entypo name="star" size={28} color="#FFB100" />
-                        <Entypo name="star" size={28} color="#BCBCBC" />
-                        <Entypo name="star" size={28} color="#BCBCBC" />
-                      </View>
-                    ) : item.ratingValue === 4 ? (
-                      <View style={style.starsView}>
-                        <Entypo name="star" size={28} color="#FFB100" />
-                        <Entypo name="star" size={28} color="#FFB100" />
-                        <Entypo name="star" size={28} color="#FFB100" />
-                        <Entypo name="star" size={28} color="#FFB100" />
-                        <Entypo name="star" size={28} color="#BCBCBC" />
-                      </View>
-                    ) : item.ratingValue === 5 ? (
-                      <View style={style.starsView}>
-                        <Entypo name="star" size={28} color="#FFB100" />
-                        <Entypo name="star" size={28} color="#FFB100" />
-                        <Entypo name="star" size={28} color="#FFB100" />
-                        <Entypo name="star" size={28} color="#FFB100" />
-                        <Entypo name="star" size={28} color="#FFB100" />
-                      </View>
-                    ) : null}
+                    <Text>{generateStars(item.ratingValue)}</Text>
                     <Text style={style.reviewsText}>
                       {item.reviews} reviews
                     </Text>

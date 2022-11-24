@@ -12,8 +12,11 @@ import style from "../style";
 import axios from "axios";
 import logo from "../assets/logo.png";
 import { AntDesign } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/core";
 
 export default function SignUpScreen({ setToken }) {
+  const navigation = useNavigation();
+
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [description, setDescription] = useState("");
@@ -132,7 +135,7 @@ export default function SignUpScreen({ setToken }) {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("SignIp");
+            navigation.navigate("SignIn");
           }}
         >
           <Text>Already an account ? Sign in</Text>

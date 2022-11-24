@@ -13,6 +13,7 @@ import axios from "axios";
 import style from "../style";
 import { Entypo } from "@expo/vector-icons";
 import { SwiperFlatList } from "react-native-swiper-flatlist";
+import MapView, { Marker } from "react-native-maps";
 
 import ReadMore from "@fawazahmed/react-native-read-more";
 
@@ -38,8 +39,20 @@ export default function RoomScreen() {
     fetchData();
   }, [id]);
 
-  //   const ratingTab = [];
-  // console.log(data.photos[2].url);
+  const generateStars = (ratingValue) => {
+    const starsArray = [];
+    for (let i = 0; i < 5; i++) {
+      if (i < ratingValue) {
+        starsArray.push(
+          <Entypo name="star" size={24} color="#DAA520" key={i} />
+        );
+      } else {
+        starsArray.push(<Entypo name="star" size={24} color="grey" key={i} />);
+      }
+    }
+
+    return starsArray;
+  };
 
   return isLoading ? (
     <View style={style.activityIndicator}>
@@ -72,47 +85,7 @@ export default function RoomScreen() {
             {data.title}
           </Text>
           <View style={style.rating}>
-            {data.ratingValue === 1 ? (
-              <View>
-                <Entypo name="star" size={28} color="#FFB100" />
-                <Entypo name="star" size={28} color="#BCBCBC" />
-                <Entypo name="star" size={28} color="#BCBCBC" />
-                <Entypo name="star" size={28} color="#BCBCBC" />
-                <Entypo name="star" size={28} color="#BCBCBC" />
-              </View>
-            ) : data.ratingValue === 2 ? (
-              <View style={style.starsView}>
-                <Entypo name="star" size={28} color="#FFB100" />
-                <Entypo name="star" size={28} color="#FFB100" />
-                <Entypo name="star" size={28} color="#BCBCBC" />
-                <Entypo name="star" size={28} color="#BCBCBC" />
-                <Entypo name="star" size={28} color="#BCBCBC" />
-              </View>
-            ) : data.ratingValue === 3 ? (
-              <View style={style.starsView}>
-                <Entypo name="star" size={28} color="#FFB100" />
-                <Entypo name="star" size={28} color="#FFB100" />
-                <Entypo name="star" size={28} color="#FFB100" />
-                <Entypo name="star" size={28} color="#BCBCBC" />
-                <Entypo name="star" size={28} color="#BCBCBC" />
-              </View>
-            ) : data.ratingValue === 4 ? (
-              <View style={style.starsView}>
-                <Entypo name="star" size={28} color="#FFB100" />
-                <Entypo name="star" size={28} color="#FFB100" />
-                <Entypo name="star" size={28} color="#FFB100" />
-                <Entypo name="star" size={28} color="#FFB100" />
-                <Entypo name="star" size={28} color="#BCBCBC" />
-              </View>
-            ) : data.ratingValue === 5 ? (
-              <View style={style.starsView}>
-                <Entypo name="star" size={28} color="#FFB100" />
-                <Entypo name="star" size={28} color="#FFB100" />
-                <Entypo name="star" size={28} color="#FFB100" />
-                <Entypo name="star" size={28} color="#FFB100" />
-                <Entypo name="star" size={28} color="#FFB100" />
-              </View>
-            ) : null}
+            <Text>{generateStars(data.ratingValue)}</Text>
             <Text style={style.reviewsText}>{data.reviews} reviews</Text>
           </View>
         </View>
@@ -130,8 +103,23 @@ export default function RoomScreen() {
       >
         {data.description}
       </ReadMore>
-      <View style={style.map}>
-        <Text>Ceci sera la carte</Text>
+      <View style={style.mapContainer}>
+        <MapView
+          style={style.roomMap}
+          initialRegion={{
+            latitude: data.location[1],
+            longitude: data.location[0],
+            latitudeDelta: 0.02,
+            longitudeDelta: 0.02,
+          }}
+        >
+          <Marker
+            coordinate={{
+              latitude: data.location[1],
+              longitude: data.location[0],
+            }}
+          />
+        </MapView>
       </View>
     </ScrollView>
   );

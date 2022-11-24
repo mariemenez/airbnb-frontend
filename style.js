@@ -165,11 +165,17 @@ export default StyleSheet.create({
     paddingLeft: 15,
   },
 
-  map: {
-    height: 300,
-    // backgroundColor: "orange",
-    justifyContent: "center",
+  mapContainer: {
+    flex: 1,
+    backgroundColor: "#fff",
     alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    height: "100%",
+  },
+  roomMap: {
+    width: "100%",
+    height: 250,
   },
 
   // ACTIVITY INDICATOR
@@ -190,5 +196,19 @@ export default StyleSheet.create({
     color: "grey",
     fontWeight: "bold",
     textDecorationLine: "underline",
+  },
+
+  // AROUND ME
+
+  aroundMeMap: {
+    width: "100%",
+    height: 1000,
+  },
+  aroundMemapContainer: {
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    height: "100%",
   },
 });

@@ -18,6 +18,7 @@ import RoomScreen from "./containers/RoomScreen";
 import styles from "./style";
 import { Image } from "react-native";
 import logo from "./assets/logo.png";
+import AroundMeScreen from "./containers/AroundMeScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -133,7 +134,7 @@ export default function App() {
                   )}
                 </Tab.Screen>
                 <Tab.Screen
-                  name="AroundMe"
+                  name="AroundmeTab"
                   options={{
                     tabBarLabel: "Around me",
                     tabBarIcon: ({ color, size }) => (
@@ -144,12 +145,22 @@ export default function App() {
                   {() => (
                     <Stack.Navigator>
                       <Stack.Screen
-                        name="Settings"
+                        name="Room"
                         options={{
-                          title: "Settings",
+                          title: "Room screen",
+                          headerTitle: (props) => <LogoTitle {...props} />,
                         }}
                       >
-                        {() => <SettingsScreen setToken={setToken} />}
+                        {() => <RoomScreen />}
+                      </Stack.Screen>
+                      <Stack.Screen
+                        name="AroundMe"
+                        options={{
+                          title: "Around me",
+                          headerTitle: (props) => <LogoTitle {...props} />,
+                        }}
+                      >
+                        {() => <AroundMeScreen setToken={setToken} />}
                       </Stack.Screen>
                     </Stack.Navigator>
                   )}
