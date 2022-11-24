@@ -177,4 +177,18 @@ export default StyleSheet.create({
     justifyContent: "center",
     flex: 1,
   },
+
+  test: {
+    color: "black",
+  },
+  seeLessStyle: {
+    color: "grey",
+    fontWeight: "bold",
+    textDecorationLine: "underline",
+  },
+  seeMoreStyle: {
+    color: "grey",
+    fontWeight: "bold",
+    textDecorationLine: "underline",
+  },
 });

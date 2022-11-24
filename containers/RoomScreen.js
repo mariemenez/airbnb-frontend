@@ -5,6 +5,7 @@ import {
   Image,
   ImageBackground,
   ActivityIndicator,
+  ScrollView,
 } from "react-native";
 import { useRoute } from "@react-navigation/core";
 import { useEffect, useState } from "react";
@@ -12,6 +13,8 @@ import axios from "axios";
 import style from "../style";
 import { Entypo } from "@expo/vector-icons";
 import { SwiperFlatList } from "react-native-swiper-flatlist";
+
+import ReadMore from "@fawazahmed/react-native-read-more";
 
 export default function RoomScreen() {
   const [isLoading, setIsLoading] = useState(true);
@@ -43,7 +46,7 @@ export default function RoomScreen() {
       <ActivityIndicator size="large" color="#EB5A62" />
     </View>
   ) : (
-    <View style={style.background}>
+    <ScrollView style={style.background}>
       <View>
         <SwiperFlatList
           showPagination
@@ -119,16 +122,17 @@ export default function RoomScreen() {
           resizeMode="cover"
         />
       </View>
-      <Text
+      <ReadMore
         style={style.roomDescription}
+        seeLessStyle={style.seeLessStyle}
+        seeMoreStyle={style.seeMoreStyle}
         numberOfLines={3}
-        ellipsizeMode="tail"
       >
         {data.description}
-      </Text>
+      </ReadMore>
       <View style={style.map}>
         <Text>Ceci sera la carte</Text>
       </View>
-    </View>
+    </ScrollView>
   );
 }
