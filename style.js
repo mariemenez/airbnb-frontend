@@ -211,4 +211,71 @@ export default StyleSheet.create({
     width: "100%",
     height: "100%",
   },
+
+  // PROFILE
+  profileTop: {
+    backgroundColor: "pink",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 2,
+  },
+  profilePicture: {
+    borderRadius: 100,
+    width: 200,
+    height: 200,
+    padding: 5,
+  },
+
+  profileMiddle: {
+    backgroundColor: "lightblue",
+    flex: 2,
+    justifyContent: "flex-start",
+  },
+
+  profileInput: {
+    borderBottomColor: "pink",
+    borderBottomWidth: 2,
+    marginHorizontal: 15,
+    backgroundColor: "white",
+  },
+  profileDescriptionInput: {
+    borderColor: "pink",
+    borderWidth: 2,
+    marginHorizontal: 15,
+    marginTop: 25,
+    backgroundColor: "white",
+    paddingBottom: 30,
+  },
+
+  profileBottom: {
+    backgroundColor: "lightgreen",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  profileUpdateButton: {
+    borderColor: "#EB5A62",
+    borderWidth: 2,
+    padding: 15,
+    width: 200,
+    borderRadius: 50,
+  },
+  profileLogOutButton: {
+    borderColor: "#EB5A62",
+    borderWidth: 2,
+    padding: 15,
+    width: 200,
+    borderRadius: 50,
+    backgroundColor: "lightgrey",
+    marginTop: 10,
+  },
+
+  profileButtonText: {
+    color: "grey",
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
 });

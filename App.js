@@ -26,6 +26,9 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [userToken, setUserToken] = useState(null);
+  const [userId, setUserId] = useState(null);
+
+  // FONCTION POUR ENREGISTRER TOEKN DANS STORAGE
 
   const setToken = async (token) => {
     if (token) {
@@ -35,6 +38,18 @@ export default function App() {
     }
 
     setUserToken(token);
+  };
+
+  // FONCTION POUR ENREGISTRER ID DANS STORAGE
+
+  const setId = async (id) => {
+    if (id) {
+      await AsyncStorage.setItem("userId", id);
+    } else {
+      await AsyncStorage.removeItem("userId");
+    }
+
+    setUserId(id);
   };
 
   const LogoTitle = () => {
@@ -49,7 +64,7 @@ export default function App() {
 
   useEffect(() => {
     // Fetch the token from storage then navigate to our appropriate place
-    const bootstrapAsync = async () => {
+    const getToken = async () => {
       // We should also handle error for production apps
       const userToken = await AsyncStorage.getItem("userToken");
 
@@ -60,7 +75,7 @@ export default function App() {
       setIsLoading(false);
     };
 
-    bootstrapAsync();
+    getToken();
   }, []);
 
   if (isLoading === true) {
@@ -75,10 +90,10 @@ export default function App() {
           // No token found, user isn't signed in
           <>
             <Stack.Screen name="SignIn">
-              {() => <SignInScreen setToken={setToken} />}
+              {() => <SignInScreen setToken={setToken} setId={setId} />}
             </Stack.Screen>
             <Stack.Screen name="SignUp">
-              {() => <SignUpScreen setToken={setToken} />}
+              {() => <SignUpScreen setToken={setToken} setId={setId} />}
             </Stack.Screen>
           </>
         ) : (
@@ -128,7 +143,7 @@ export default function App() {
                           title: "User Profile",
                         }}
                       >
-                        {() => <ProfileScreen />}
+                        {() => <ProfileScreen setToken={setToken} />}
                       </Stack.Screen>
                     </Stack.Navigator>
                   )}
@@ -144,15 +159,6 @@ export default function App() {
                 >
                   {() => (
                     <Stack.Navigator>
-                      <Stack.Screen
-                        name="Room"
-                        options={{
-                          title: "Room screen",
-                          headerTitle: (props) => <LogoTitle {...props} />,
-                        }}
-                      >
-                        {() => <RoomScreen />}
-                      </Stack.Screen>
                       <Stack.Screen
                         name="AroundMe"
                         options={{
@@ -203,12 +209,12 @@ export default function App() {
                   {() => (
                     <Stack.Navigator>
                       <Stack.Screen
-                        name="Settings"
+                        name="MyProfile"
                         options={{
-                          title: "Settings",
+                          title: "My profile",
                         }}
                       >
-                        {() => <SettingsScreen setToken={setToken} />}
+                        {() => <ProfileScreen setToken={setToken} />}
                       </Stack.Screen>
                     </Stack.Navigator>
                   )}

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { useNavigation } from "@react-navigation/core";
 import {
@@ -14,7 +15,7 @@ import style from "../style";
 import logo from "../assets/logo.png";
 import { AntDesign } from "@expo/vector-icons";
 
-export default function SignInScreen({ setToken }) {
+export default function SignInScreen({ setToken, setId }) {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,10 +34,12 @@ export default function SignInScreen({ setToken }) {
             password: password,
           }
         );
-        const userToken = response.data.token;
-        // console.log(response.data.token);
         alert("vous êtes connecté");
+        const userToken = response.data.token;
         setToken(userToken);
+        const userId = response.data.id;
+        setId(userId);
+        console.log(response.data.id);
       } catch (error) {
         alert("identifiant ou mot de passe incorrect");
       }
