@@ -15,33 +15,31 @@ import { useNavigation } from "@react-navigation/core";
 import maison from "../assets/maison.png";
 
 export default function AroundMeScreen() {
-  const [data, setData] = useState();
+  const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
   const navigation = useNavigation();
 
   useEffect(() => {
     const askPermission = async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status === "granted") {
-        let location = await Location.getCurrentPositionAsync({});
-        setLatitude(location.coords.latitude),
-          setLongitude(location.coords.longitude);
-        const fetchData = async () => {
-          try {
-            const response = await axios.get(
-              `https://express-airbnb-api.herokuapp.com/rooms?latitude=${latitude}&longitude=${longitude}`
-            );
-            setData(response.data);
-            setIsLoading(false);
-          } catch (error) {
-            console.log(error.message);
-          }
-        };
-        fetchData();
-      } else {
-        setError(true);
+      try {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        let response;
+        if (status === "granted") {
+          const location = await Location.getCurrentPositionAsync();
+          const latitude = location.coords.latitude;
+          const longitude = location.coords.longitude;
+          response = await axios.get(
+            `https://lereacteur-bootcamp-api.herokuapp.com/api/airbnb/rooms/around?latitude=${latitude}&longitude=${longitude}`
+          );
+          setData(response.data);
+          setIsLoading(false);
+        } else {
+          response = await axios.get(
+            `https://lereacteur-bootcamp-api.herokuapp.com/api/airbnb/rooms/around`
+          );
+        }
+      } catch (error) {
+        console.log(error.message);
       }
     };
     askPermission();
@@ -57,8 +55,8 @@ export default function AroundMeScreen() {
         <MapView
           style={style.aroundMeMap}
           initialRegion={{
-            latitude: latitude,
-            longitude: longitude,
+            latitude: 48.856614,
+            longitude: 2.3522219,
             latitudeDelta: 0.1,
             longitudeDelta: 0.1,
           }}

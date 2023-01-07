@@ -1,38 +1,30 @@
 import { useRoute } from "@react-navigation/core";
-import { Text, View, TouchableOpacity, Image } from "react-native";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  ActivityIndicator,
+} from "react-native";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import style from "../style";
 import { TextInput } from "react-native-paper";
+import { useNavigation } from "@react-navigation/core";
 
-export default function ProfileScreen() {
+export default function ProfileScreen({ userToken, userId }) {
   const route = useRoute();
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
-  const [userId, setUserId] = useState(null);
-  const [userToken, setUserToken] = useState(null);
 
-  // JE RECUPERE MON L'ID DE L'UTILISATEUR
-  const getId = async () => {
-    const userId = await AsyncStorage.getItem("userId");
-    setUserId(userId);
-  };
-  getId();
-
-  // JE RECUPERE MON LE TOKEN DE L'UTILISATEUR
-  const getToken = async () => {
-    const userToken = await AsyncStorage.getItem("userToken");
-    setUserToken(userToken);
-  };
-  getToken();
+  const navigation = useNavigation();
 
   // JE FAIS MA REQUETE
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://express-airbnb-api.herokuapp.com/user/${userId}`,
+          `https://lereacteur-bootcamp-api.herokuapp.com/api/airbnb/user/${userId}`,
 
           {
             headers: {
@@ -42,8 +34,6 @@ export default function ProfileScreen() {
         );
         setData(response.data);
         setIsLoading(false);
-        // console.log(data.token);
-        // console.log(response.data);
       } catch (error) {
         console.log(error.message);
       }
@@ -52,19 +42,17 @@ export default function ProfileScreen() {
   }, [userId]);
 
   return isLoading ? (
-    <Text>en chargement</Text>
+    <View style={style.activityIndicator}>
+      <ActivityIndicator size="large" color="#EB5A62" />
+    </View>
   ) : (
     <View style={{ flex: 1 }}>
       <View style={style.profileTop}>
         <Image
-          source={{ uri: data.photo.url }}
+          source={{ uri: "https://cutt.ly/G2QPkPg" }}
           style={style.profilePicture}
           resizeMode="cover"
         />
-        <View>
-          <Text>appareil photo</Text>
-          <Text>galerie</Text>
-        </View>
       </View>
       <View style={style.profileMiddle}>
         <TextInput style={style.profileInput} value={data.email} />
@@ -75,7 +63,12 @@ export default function ProfileScreen() {
         />
       </View>
       <View style={style.profileBottom}>
-        <TouchableOpacity style={style.profileUpdateButton}>
+        <TouchableOpacity
+          style={style.profileUpdateButton}
+          onPress={() => {
+            navigation.navigate("UpdateMyProfile");
+          }}
+        >
           <Text style={style.profileButtonText}>Update</Text>
         </TouchableOpacity>
         <TouchableOpacity style={style.profileLogOutButton}>

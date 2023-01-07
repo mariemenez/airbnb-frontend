@@ -14,7 +14,7 @@ import logo from "../assets/logo.png";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/core";
 
-export default function SignUpScreen({ setToken }) {
+export default function SignUpScreen({ setToken, setId }) {
   const navigation = useNavigation();
 
   const [email, setEmail] = useState("");
@@ -40,7 +40,7 @@ export default function SignUpScreen({ setToken }) {
     } else {
       try {
         const response = await axios.post(
-          "https://express-airbnb-api.herokuapp.com/user/sign_up",
+          "https://lereacteur-bootcamp-api.herokuapp.com/api/airbnb/user/sign_up",
           {
             email: email,
             username: username,
@@ -49,7 +49,10 @@ export default function SignUpScreen({ setToken }) {
           }
         );
         const userToken = response.data.token;
+        const userId = response.data.id;
+        setId(userId);
         setToken(userToken);
+        se;
         alert("Votre compte a bien été créé");
       } catch (error) {
         console.log(error.message);

@@ -28,7 +28,7 @@ export default function SignInScreen({ setToken, setId }) {
     } else {
       try {
         const response = await axios.post(
-          "https://express-airbnb-api.herokuapp.com/user/log_in",
+          "https://lereacteur-bootcamp-api.herokuapp.com/api/airbnb/user/log_in",
           {
             email: email,
             password: password,
@@ -36,8 +36,8 @@ export default function SignInScreen({ setToken, setId }) {
         );
         alert("vous êtes connecté");
         const userToken = response.data.token;
-        setToken(userToken);
         const userId = response.data.id;
+        setToken(userToken);
         setId(userId);
         console.log(response.data.id);
       } catch (error) {

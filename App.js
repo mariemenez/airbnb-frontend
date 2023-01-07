@@ -14,6 +14,7 @@ import SignUpScreen from "./containers/SignUpScreen";
 import SettingsScreen from "./containers/SettingsScreen";
 import SplashScreen from "./containers/SplashScreen";
 import RoomScreen from "./containers/RoomScreen";
+import UpdateProfileScreen from "./containers/UpdateProfileScreen";
 
 import styles from "./style";
 import { Image } from "react-native";
@@ -32,24 +33,24 @@ export default function App() {
 
   const setToken = async (token) => {
     if (token) {
-      await AsyncStorage.setItem("userToken", token);
+      AsyncStorage.setItem("userToken", token);
+      setUserToken(token);
     } else {
-      await AsyncStorage.removeItem("userToken");
+      AsyncStorage.removeItem("userToken");
+      setUserToken(null);
     }
-
-    setUserToken(token);
   };
 
   // FONCTION POUR ENREGISTRER ID DANS STORAGE
 
   const setId = async (id) => {
     if (id) {
-      await AsyncStorage.setItem("userId", id);
+      AsyncStorage.setItem("userId", id);
+      setUserId(id);
     } else {
-      await AsyncStorage.removeItem("userId");
+      AsyncStorage.removeItem("userId");
+      setUserId(null);
     }
-
-    setUserId(id);
   };
 
   const LogoTitle = () => {
@@ -71,7 +72,7 @@ export default function App() {
       // This will switch to the App screen or Auth screen and this loading
       // screen will be unmounted and thrown away.
       setUserToken(userToken);
-
+      setUserId(userId);
       setIsLoading(false);
     };
 
@@ -137,14 +138,14 @@ export default function App() {
                         {() => <RoomScreen />}
                       </Stack.Screen>
 
-                      <Stack.Screen
+                      {/* <Stack.Screen
                         name="Profile"
                         options={{
                           title: "User Profile",
                         }}
                       >
                         {() => <ProfileScreen setToken={setToken} />}
-                      </Stack.Screen>
+                      </Stack.Screen> */}
                     </Stack.Navigator>
                   )}
                 </Tab.Screen>
@@ -214,7 +215,22 @@ export default function App() {
                           title: "My profile",
                         }}
                       >
-                        {() => <ProfileScreen setToken={setToken} />}
+                        {() => (
+                          <ProfileScreen
+                            userToken={userToken}
+                            userId={userId}
+                            setToken={setToken}
+                            setId={setId}
+                          />
+                        )}
+                      </Stack.Screen>
+                      <Stack.Screen
+                        name="UpdateMyProfile"
+                        options={{
+                          title: "Modifier mon profile",
+                        }}
+                      >
+                        {() => <UpdateProfileScreen setToken={setToken} />}
                       </Stack.Screen>
                     </Stack.Navigator>
                   )}

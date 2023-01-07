@@ -1,10 +1,9 @@
 import { Button, Text, View } from "react-native";
+import style from "../style";
 
 export default function SettingsScreen({ setToken }) {
   return (
-    <View>
-      <Text>Hello Settings</Text>
-
+    <View style={style.settingsContainer}>
       <Button
         title="Log Out"
         onPress={() => {

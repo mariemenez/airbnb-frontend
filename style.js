@@ -278,4 +278,12 @@ export default StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
   },
+
+  // SETTINGS
+
+  settingsContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
