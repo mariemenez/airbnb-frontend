@@ -68,7 +68,7 @@ export default function App() {
     const getToken = async () => {
       // We should also handle error for production apps
       const userToken = await AsyncStorage.getItem("userToken");
-
+      const userId = await AsyncStorage.getItem("userId");
       // This will switch to the App screen or Auth screen and this loading
       // screen will be unmounted and thrown away.
       setUserToken(userToken);
@@ -215,8 +215,9 @@ export default function App() {
                           title: "My profile",
                         }}
                       >
-                        {() => (
+                        {(props) => (
                           <ProfileScreen
+                            {...props}
                             userToken={userToken}
                             userId={userId}
                             setToken={setToken}
@@ -224,14 +225,14 @@ export default function App() {
                           />
                         )}
                       </Stack.Screen>
-                      <Stack.Screen
+                      {/* <Stack.Screen
                         name="UpdateMyProfile"
                         options={{
                           title: "Modifier mon profile",
                         }}
                       >
                         {() => <UpdateProfileScreen setToken={setToken} />}
-                      </Stack.Screen>
+                      </Stack.Screen> */}
                     </Stack.Navigator>
                   )}
                 </Tab.Screen>

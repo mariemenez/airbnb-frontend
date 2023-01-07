@@ -214,7 +214,7 @@ export default StyleSheet.create({
 
   // PROFILE
   profileTop: {
-    backgroundColor: "pink",
+    backgroundColor: "white",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
@@ -225,10 +225,14 @@ export default StyleSheet.create({
     width: 200,
     height: 200,
     padding: 5,
+    marginRight: 20,
   },
-
+  iconePicture: {
+    justifyContent: "space-evenly",
+    height: 200,
+  },
   profileMiddle: {
-    backgroundColor: "lightblue",
+    backgroundColor: "white",
     flex: 2,
     justifyContent: "flex-start",
   },
@@ -238,6 +242,8 @@ export default StyleSheet.create({
     borderBottomWidth: 2,
     marginHorizontal: 15,
     backgroundColor: "white",
+    padding: 10,
+    marginTop: 20,
   },
   profileDescriptionInput: {
     borderColor: "pink",
@@ -245,11 +251,11 @@ export default StyleSheet.create({
     marginHorizontal: 15,
     marginTop: 25,
     backgroundColor: "white",
-    paddingBottom: 30,
+    paddingBottom: 100,
   },
 
   profileBottom: {
-    backgroundColor: "lightgreen",
+    backgroundColor: "white",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",

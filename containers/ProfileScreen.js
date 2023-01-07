@@ -5,12 +5,14 @@ import {
   TouchableOpacity,
   Image,
   ActivityIndicator,
+  TextInput,
 } from "react-native";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import style from "../style";
-import { TextInput } from "react-native-paper";
 import { useNavigation } from "@react-navigation/core";
+import gallerie from "../assets/gallerie.png";
+import photo from "../assets/photo.png";
 
 export default function ProfileScreen({ userToken, userId }) {
   const route = useRoute();
@@ -35,11 +37,12 @@ export default function ProfileScreen({ userToken, userId }) {
         setData(response.data);
         setIsLoading(false);
       } catch (error) {
+        alert("non");
         console.log(error.message);
       }
     };
     fetchData();
-  }, [userId]);
+  }, []);
 
   return isLoading ? (
     <View style={style.activityIndicator}>
@@ -49,10 +52,22 @@ export default function ProfileScreen({ userToken, userId }) {
     <View style={{ flex: 1 }}>
       <View style={style.profileTop}>
         <Image
-          source={{ uri: "https://cutt.ly/G2QPkPg" }}
+          source={{ uri: "https://cutt.ly/J2QJVaT" }}
           style={style.profilePicture}
           resizeMode="cover"
         />
+        <View style={style.iconePicture}>
+          <Image
+            style={{ width: 40, height: 40 }}
+            source={gallerie}
+            resizeMode="contain"
+          />
+          <Image
+            style={{ width: 40, height: 40 }}
+            source={photo}
+            resizeMode="contain"
+          />
+        </View>
       </View>
       <View style={style.profileMiddle}>
         <TextInput style={style.profileInput} value={data.email} />
