@@ -68,6 +68,7 @@ export default function SignUpScreen({ setToken, setId }) {
       <View style={style.inputBloc}>
         <TextInput
           style={style.input}
+          autoCapitalize="none"
           value={email}
           placeholder="email"
           onChangeText={(text) => {
@@ -76,6 +77,7 @@ export default function SignUpScreen({ setToken, setId }) {
         />
         <TextInput
           style={style.input}
+          autoCapitalize="none"
           value={username}
           placeholder="username"
           onChangeText={(text) => {
@@ -84,6 +86,7 @@ export default function SignUpScreen({ setToken, setId }) {
         />
         <TextInput
           style={style.input}
+          autoCapitalize="none"
           value={description}
           placeholder="Describe yourself in a few words"
           onChangeText={(text) => {

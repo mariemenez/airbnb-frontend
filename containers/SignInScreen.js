@@ -53,6 +53,7 @@ export default function SignInScreen({ setToken, setId }) {
       <View style={style.inputBloc}>
         <TextInput
           style={style.input}
+          autoCapitalize="none"
           value={email}
           placeholder="email"
           onChangeText={(text) => {

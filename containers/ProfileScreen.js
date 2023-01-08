@@ -14,12 +14,11 @@ import { useNavigation } from "@react-navigation/core";
 import gallerie from "../assets/gallerie.png";
 import photo from "../assets/photo.png";
 
-export default function ProfileScreen({ userToken, userId }) {
+export default function ProfileScreen({ userToken, userId, setToken, setId }) {
   const route = useRoute();
+  const navigation = useNavigation();
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
-
-  const navigation = useNavigation();
 
   // JE FAIS MA REQUETE
   useEffect(() => {
@@ -79,7 +78,13 @@ export default function ProfileScreen({ userToken, userId }) {
         />
       </View>
       <View style={style.profileBottom}>
-        <TouchableOpacity style={style.profileLogOutButton}>
+        <TouchableOpacity
+          style={style.profileLogOutButton}
+          onPress={() => {
+            setToken(null);
+            setId(null);
+          }}
+        >
           <Text style={style.buttonText}>Log out</Text>
         </TouchableOpacity>
       </View>
