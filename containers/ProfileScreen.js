@@ -1,12 +1,5 @@
 import { useRoute } from "@react-navigation/core";
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-  ActivityIndicator,
-  TextInput,
-} from "react-native";
+import { View, Image, ActivityIndicator, TextInput } from "react-native";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import style from "../style";
@@ -34,6 +27,7 @@ export default function ProfileScreen({ userToken, userId }) {
             },
           }
         );
+
         setData(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -76,19 +70,6 @@ export default function ProfileScreen({ userToken, userId }) {
           style={style.profileDescriptionInput}
           value={data.description}
         />
-      </View>
-      <View style={style.profileBottom}>
-        <TouchableOpacity
-          style={style.profileUpdateButton}
-          onPress={() => {
-            navigation.navigate("UpdateMyProfile");
-          }}
-        >
-          <Text style={style.profileButtonText}>Update</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={style.profileLogOutButton}>
-          <Text style={style.profileButtonText}>Log out</Text>
-        </TouchableOpacity>
       </View>
     </View>
   );

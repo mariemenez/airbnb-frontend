@@ -12,9 +12,7 @@ import ProfileScreen from "./containers/ProfileScreen";
 import SignInScreen from "./containers/SignInScreen";
 import SignUpScreen from "./containers/SignUpScreen";
 import SettingsScreen from "./containers/SettingsScreen";
-import SplashScreen from "./containers/SplashScreen";
 import RoomScreen from "./containers/RoomScreen";
-import UpdateProfileScreen from "./containers/UpdateProfileScreen";
 
 import styles from "./style";
 import { Image } from "react-native";
@@ -137,15 +135,6 @@ export default function App() {
                       >
                         {() => <RoomScreen />}
                       </Stack.Screen>
-
-                      {/* <Stack.Screen
-                        name="Profile"
-                        options={{
-                          title: "User Profile",
-                        }}
-                      >
-                        {() => <ProfileScreen setToken={setToken} />}
-                      </Stack.Screen> */}
                     </Stack.Navigator>
                   )}
                 </Tab.Screen>
@@ -225,14 +214,6 @@ export default function App() {
                           />
                         )}
                       </Stack.Screen>
-                      {/* <Stack.Screen
-                        name="UpdateMyProfile"
-                        options={{
-                          title: "Modifier mon profile",
-                        }}
-                      >
-                        {() => <UpdateProfileScreen setToken={setToken} />}
-                      </Stack.Screen> */}
                     </Stack.Navigator>
                   )}
                 </Tab.Screen>

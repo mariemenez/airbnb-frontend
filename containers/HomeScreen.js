@@ -1,10 +1,8 @@
 import { useNavigation } from "@react-navigation/core";
 import {
-  Button,
   Text,
   View,
   Image,
-  ScrollView,
   ImageBackground,
   TouchableOpacity,
   ActivityIndicator,
@@ -59,13 +57,6 @@ export default function HomeScreen() {
     </View>
   ) : (
     <View style={[style.background, style.roomDetailsPadding]}>
-      {/* <Text>Welcome home!</Text>
-      <Button
-        title="Go to Profile"
-        onPress={() => {
-          navigation.navigate("Profile", { userId: 123 });
-        }}
-      /> */}
       <FlatList
         data={data}
         keyExtractor={(item) => String(item._id)}

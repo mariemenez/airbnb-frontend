@@ -1,11 +1,4 @@
-import {
-  Button,
-  Text,
-  View,
-  ActivityIndicator,
-  TouchableOpacity,
-  Image,
-} from "react-native";
+import { View, ActivityIndicator, Image } from "react-native";
 import * as Location from "expo-location";
 import { useState, useEffect } from "react";
 import MapView, { Marker } from "react-native-maps";

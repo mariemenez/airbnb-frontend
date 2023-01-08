@@ -5,7 +5,6 @@ import {
   View,
   Image,
   TouchableOpacity,
-  KeyboardAwareScrollView,
 } from "react-native";
 import { useState } from "react";
 import style from "../style";
