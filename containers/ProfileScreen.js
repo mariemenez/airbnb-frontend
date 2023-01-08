@@ -1,5 +1,12 @@
 import { useRoute } from "@react-navigation/core";
-import { View, Image, ActivityIndicator, TextInput } from "react-native";
+import {
+  View,
+  Image,
+  ActivityIndicator,
+  TextInput,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import style from "../style";
@@ -70,6 +77,11 @@ export default function ProfileScreen({ userToken, userId }) {
           style={style.profileDescriptionInput}
           value={data.description}
         />
+      </View>
+      <View style={style.profileBottom}>
+        <TouchableOpacity style={style.profileLogOutButton}>
+          <Text style={style.buttonText}>Log out</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
